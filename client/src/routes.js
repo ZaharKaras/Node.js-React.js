@@ -1,7 +1,6 @@
 import { ADMIN_ROUTE, AGENCY_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, TRIP_ROUTE } from "./utils/consts"
 import Basket from "./pages/Basket"
 import Agency from "./pages/Agency"
-import { login } from "../../server/controllers/userController"
 import Auth from "./pages/Auth"
 import TripPage from "./pages/TripPage"
 import Admin from "./pages/Admin"
@@ -28,7 +27,7 @@ export const publicRoutes = [
     },
     {
         path: REGISTRATION_ROUTE,
-        Comment: Auth
+        Component: Auth
     },
     {
         path: TRIP_ROUTE + '/:id',

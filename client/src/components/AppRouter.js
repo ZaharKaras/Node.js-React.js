@@ -1,18 +1,28 @@
-import React from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { authRoutes, publicRoutes } from '../routes';
+import { Context } from '..';
+
+
+
+const NotFound = () => {
+    return <>Not found!</>;
+};
 
 const AppRouter = () => {
-    const isAuth = false
+    const {user} = useContext(Context)
+
+    console.log(user)
     return (
-        <Switch>
-            {isAuth && authRoutes.map(({path, Component}) =>
-                <Route key={path} path={path} Component={Component} exact/>
+        <Routes>
+            {user.isAuth && authRoutes.map(({ path, Component  }) =>
+                <Route exact path={path} Component={Component }  />
             )}
-            {publicRoutes.map(({path, Component}) =>
-                <Route key={path} path={path} Component={Component} exact/>
+            {publicRoutes.map(({ path, Component }) =>
+                <Route exact path={path} Component={Component} />
             )}
-        </Switch>
+            <Route path={'*'} Component={NotFound}></Route>
+        </Routes>
     );
 };
 
