@@ -35,6 +35,7 @@ class UserController
             return next(ApiError.internal('Invalid password'));
         }
         const token = jwt.sign({id: user.id, email: user.email}, 'random', {expiresIn: '24h'})
+        return res.json(token)
     }
 
     async check(req, res, next )
