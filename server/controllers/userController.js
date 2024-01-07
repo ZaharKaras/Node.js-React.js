@@ -6,7 +6,9 @@ const {User, Basket} = require('../models/models')
 class UserController
 {
     async registration(req, res, next){
+        console.log("grgr");
         const {email, password} = req.body
+        console.log(email, password)
         if(!email || !password){
             return next(ApiError.badRequest('Ivalid data'))
         }
@@ -27,12 +29,12 @@ class UserController
         const user = await User.findOne({where: {email}})
         if(!user)
         {
-            return next(ApiError.internal('There is not such user'))
+            return next(ApiError.badRequest('There is not such user'))
         }
         let comparePassword = bcrypt.compareSync(password, user.password)
         if(!comparePassword)
         {
-            return next(ApiError.internal('Invalid password'));
+            return next(ApiError.badRequest('Invalid password'));
         }
         const token = jwt.sign({id: user.id, email: user.email}, 'random', {expiresIn: '24h'})
         return res.json(token)

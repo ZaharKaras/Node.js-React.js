@@ -21,7 +21,6 @@ const Auth = observer(() => {
     const click = async () => {
         try {
             let data;
-
             if (isLogin) {
                 data = await login(email, password);
             } else {
@@ -32,7 +31,7 @@ const Auth = observer(() => {
             user.setIsAuth(true)
             navigate(AGENCY_ROUTE)
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e.response?.data?.message)
         }
     }
 
