@@ -1,14 +1,18 @@
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import AppRouter from './components/AppRouter';
-import NavBar from './components/NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Trip from './Trip';
+import CreateTrip from './CreateTrip';
+import UpdateTrip from './UpdateTrip';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar/>
-        <AppRouter />
+        <Routes>
+          <Route path='/' element={<Trip/>}></Route>
+          <Route path='/create' element={<CreateTrip/>}></Route>
+          <Route path='/update/:id' element={<UpdateTrip/>}></Route>
+        </Routes>
       </BrowserRouter>
     </div>
   );

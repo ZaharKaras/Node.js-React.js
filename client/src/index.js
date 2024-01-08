@@ -1,22 +1,14 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import UserStore from './store/UserStroe';
-import TripStore from './store/TripStore';
-
-export const Context = createContext(null)
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Context.Provider value={{
-    user: new UserStore(),
-    trip: new TripStore()
-  }}>
+  <React.StrictMode>
     <App />
-  </Context.Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
